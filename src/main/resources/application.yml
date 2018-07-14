@@ -1,0 +1,46 @@
+spring:
+  profiles:
+    active: dev
+##############################
+# 异常处理
+##############################
+# 当出现 404 错误时，直接抛出异常
+# 而默认是显示一个错误页面
+  mvc:
+    throw-exception-if-no-handler-found: true
+# 不映射工程中的静态资源文件
+  resources:
+    add-mappings: false
+##############################
+# 检查终端是否支持ANSI，是的话就采用彩色输出
+# NEVER：禁用ANSI-colored输出
+# DETECT：会检查终端是否支持ANSI，是的话就采用彩色输出
+# ALWAYS：总是使用ANSI-colored格式输出，若终端不支持的时候，会有干扰信息
+##############################
+  output:
+    ansi:
+      enabled: ALWAYS
+##############################
+# mybatis
+##############################
+mybatis:
+  type-aliases-package: com.seven.server.model
+  mapper-locations: classpath:mapper/**/*.xml
+##############################
+# mapper
+##############################
+# mappers 多个接口时逗号隔开
+mapper:
+  mappers: com.seven.server.core.mapper.MyMapper
+  not-empty: true #设置以后，会去判断 insert 和 update 中符串类型!=’’
+  identity: MYSQL #主键自增回写方法,默认值MYSQL
+##############################
+# pagehelper
+##############################
+# pageSize=0时查出所有结果
+pagehelper:
+  page-size-zero: true
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql #todo
