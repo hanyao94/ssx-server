@@ -18,39 +18,39 @@ import java.util.List;
 @RestController
 @RequestMapping("/role")
 public class RoleController {
-    @Resource
-    private RoleService roleService;
+  @Resource
+  private RoleService roleService;
 
-    @PostMapping
-    public Result add(@RequestBody Role role) {
-roleService.save(role);
-        return ResultGenerator.genOkResult();
-    }
+  @PostMapping
+  public Result add(@RequestBody Role role) {
+    roleService.save(role);
+    return ResultGenerator.genOkResult();
+  }
 
-    @DeleteMapping("/{id}")
-    public Result delete(@PathVariable Long id) {
-roleService.deleteById(id);
-        return ResultGenerator.genOkResult();
-    }
+  @DeleteMapping("/{id}")
+  public Result delete(@PathVariable Long id) {
+    roleService.deleteById(id);
+    return ResultGenerator.genOkResult();
+  }
 
-    @PutMapping
-    public Result update(@RequestBody Role role) {
-roleService.update(role);
-        return ResultGenerator.genOkResult();
-    }
+  @PutMapping
+  public Result update(@RequestBody Role role) {
+    roleService.update(role);
+    return ResultGenerator.genOkResult();
+  }
 
-    @GetMapping("/{id}")
-    public Result detail(@PathVariable Long id) {
-Role role = roleService.findById(id);
-        return ResultGenerator.genOkResult(role);
-    }
+  @GetMapping("/{id}")
+  public Result detail(@PathVariable Long id) {
+    Role role = roleService.findById(id);
+    return ResultGenerator.genOkResult(role);
+  }
 
-    @GetMapping
-    public Result list(@RequestParam(defaultValue = "0") Integer page,
-                       @RequestParam(defaultValue = "0") Integer size) {
-        PageHelper.startPage(page, size);
-        List<Role> list = roleService.findAll();
-        PageInfo pageInfo = new PageInfo(list);
-        return ResultGenerator.genOkResult(pageInfo);
-    }
+  @GetMapping
+  public Result list(@RequestParam(defaultValue = "0") Integer page,
+                     @RequestParam(defaultValue = "0") Integer size) {
+    PageHelper.startPage(page, size);
+    List<Role> list = roleService.findAll();
+    PageInfo pageInfo = new PageInfo(list);
+    return ResultGenerator.genOkResult(pageInfo);
+  }
 }

@@ -18,39 +18,39 @@ import java.util.List;
 @RestController
 @RequestMapping("/role/permission")
 public class RolePermissionController {
-    @Resource
-    private RolePermissionService rolePermissionService;
+  @Resource
+  private RolePermissionService rolePermissionService;
 
-    @PostMapping
-    public Result add(@RequestBody RolePermission rolePermission) {
-rolePermissionService.save(rolePermission);
-        return ResultGenerator.genOkResult();
-    }
+  @PostMapping
+  public Result add(@RequestBody RolePermission rolePermission) {
+    rolePermissionService.save(rolePermission);
+    return ResultGenerator.genOkResult();
+  }
 
-    @DeleteMapping("/{id}")
-    public Result delete(@PathVariable Long id) {
-rolePermissionService.deleteById(id);
-        return ResultGenerator.genOkResult();
-    }
+  @DeleteMapping("/{id}")
+  public Result delete(@PathVariable Long id) {
+    rolePermissionService.deleteById(id);
+    return ResultGenerator.genOkResult();
+  }
 
-    @PutMapping
-    public Result update(@RequestBody RolePermission rolePermission) {
-rolePermissionService.update(rolePermission);
-        return ResultGenerator.genOkResult();
-    }
+  @PutMapping
+  public Result update(@RequestBody RolePermission rolePermission) {
+    rolePermissionService.update(rolePermission);
+    return ResultGenerator.genOkResult();
+  }
 
-    @GetMapping("/{id}")
-    public Result detail(@PathVariable Long id) {
-RolePermission rolePermission = rolePermissionService.findById(id);
-        return ResultGenerator.genOkResult(rolePermission);
-    }
+  @GetMapping("/{id}")
+  public Result detail(@PathVariable Long id) {
+    RolePermission rolePermission = rolePermissionService.findById(id);
+    return ResultGenerator.genOkResult(rolePermission);
+  }
 
-    @GetMapping
-    public Result list(@RequestParam(defaultValue = "0") Integer page,
-                       @RequestParam(defaultValue = "0") Integer size) {
-        PageHelper.startPage(page, size);
-        List<RolePermission> list = rolePermissionService.findAll();
-        PageInfo pageInfo = new PageInfo(list);
-        return ResultGenerator.genOkResult(pageInfo);
-    }
+  @GetMapping
+  public Result list(@RequestParam(defaultValue = "0") Integer page,
+                     @RequestParam(defaultValue = "0") Integer size) {
+    PageHelper.startPage(page, size);
+    List<RolePermission> list = rolePermissionService.findAll();
+    PageInfo pageInfo = new PageInfo(list);
+    return ResultGenerator.genOkResult(pageInfo);
+  }
 }

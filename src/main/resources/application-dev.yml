@@ -17,4 +17,5 @@ spring:
 # 日志级别
 ##############################
 logging:
-  level: debug
+  level:
+    com.seven.server: debug

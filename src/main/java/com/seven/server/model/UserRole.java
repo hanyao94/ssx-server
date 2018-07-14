@@ -14,7 +14,6 @@ public class UserRole {
     /**
      * 角色Id
      */
-    @Id
     @Column(name = "role_id")
     private Long roleId;
 

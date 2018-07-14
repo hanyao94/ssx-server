@@ -14,7 +14,6 @@ public class RolePermission {
     /**
      * 权限Id
      */
-    @Id
     @Column(name = "permission_id")
     private Long permissionId;
 
