@@ -73,6 +73,10 @@ class CodeGenerator {
             overwrite = true;
         }
         genCode("user");
+        genCode("role");
+        genCode("permission");
+        genCode("user_role");
+        genCode("role_permission");
         //genCodeByCustomModelName("输入表名","输入自定义Model名称");
     }
 
