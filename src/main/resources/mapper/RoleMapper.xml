@@ -5,7 +5,30 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
+    <id column="id" jdbcType="BIGINT" property="id"/>
+    <result column="name" jdbcType="VARCHAR" property="name"/>
   </resultMap>
+
+  <resultMap id="RoleWithPermissionMap" type="com.seven.server.model.Role" extends="BaseResultMap">
+    <!-- 1角色对应多权限 -->
+    <collection property="resourceList" ofType="com.seven.server.model.Resource">
+      <result column="permission_resource" jdbcType="VARCHAR" property="resource"/>
+      <collection property="handleList" ofType="com.alibaba.fastjson.JSONObject">
+        <id column="permission_id" jdbcType="BIGINT" property="id"/>
+        <result column="permission_handle" jdbcType="VARCHAR" property="handle"/>
+      </collection>
+    </collection>
+  </resultMap>
+
+  <select id="findAllRoleWithPermission" resultMap="RoleWithPermissionMap">
+     SELECT
+        r.*,
+        p.id as permission_id,
+        p.resource as permission_resource,
+        p.handle as permission_handle
+        FROM `role` r
+        LEFT JOIN `role_permission` rp ON r.id = rp.role_id
+        LEFT JOIN `permission` p ON rp.permission_id = p.id
+  </select>
+
 </mapper>

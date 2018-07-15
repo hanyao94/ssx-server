@@ -23,5 +23,4 @@
     SELECT p.resource,p.id,p.handle from `permission` p
   </select>
 
-
 </mapper>

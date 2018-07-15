@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author seven
@@ -20,4 +21,8 @@ public class RoleServiceImpl extends AbstractService<Role> implements RoleServic
     @Resource
     private RoleMapper roleMapper;
 
+    @Override
+    public List<com.seven.server.model.Resource> findAllRoleWithPermission() {
+        return roleMapper.findAllRoleWithPermission();
+    }
 }
