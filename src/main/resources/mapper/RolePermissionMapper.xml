@@ -5,7 +5,15 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="role_id" jdbcType="BIGINT" property="roleId" />
-    <id column="permission_id" jdbcType="BIGINT" property="permissionId" />
+    <id column="role_id" jdbcType="BIGINT" property="roleId"/>
+    <id column="permission_id" jdbcType="BIGINT" property="permissionId"/>
   </resultMap>
+
+  <insert id="saveRolePermission">
+    INSERT INTO `role_permission` (role_id,permission_id)
+    VALUES
+    <foreach collection="permissionIdList" item="item" index="index" separator=",">
+      (#{roleId},#{item})
+    </foreach>
+  </insert>
 </mapper>
