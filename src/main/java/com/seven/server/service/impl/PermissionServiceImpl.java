@@ -1,5 +1,6 @@
 package com.seven.server.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.seven.server.mapper.PermissionMapper;
 import com.seven.server.model.Permission;
 import com.seven.server.service.PermissionService;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author seven
@@ -20,4 +22,8 @@ public class PermissionServiceImpl extends AbstractService<Permission> implement
     @Resource
     private PermissionMapper permissionMapper;
 
+    @Override
+    public List<JSONObject> findAllResourcePermission() {
+        return permissionMapper.findAllResourcePermission();
+    }
 }
