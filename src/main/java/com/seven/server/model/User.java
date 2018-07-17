@@ -2,7 +2,7 @@ package com.seven.server.model;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -53,13 +53,13 @@ public class User {
    * 注册时间
    */
   @Column(name = "register_time")
-  private Date registerTime;
+  private Timestamp registerTime;
 
   /**
    * 上一次登录时间
    */
   @Column(name = "login_time")
-  private Date loginTime;
+  private Timestamp loginTime;
 
     /* ---------- 以下字段来自联表查询 ------------*/
   /**
@@ -199,7 +199,7 @@ public class User {
    *
    * @return register_time - 注册时间
    */
-  public Date getRegisterTime() {
+  public Timestamp getRegisterTime() {
     return registerTime;
   }
 
@@ -209,7 +209,7 @@ public class User {
    * @param registerTime
    *         注册时间
    */
-  public void setRegisterTime(Date registerTime) {
+  public void setRegisterTime(Timestamp registerTime) {
     this.registerTime = registerTime;
   }
 
@@ -218,7 +218,7 @@ public class User {
    *
    * @return login_time - 上一次登录时间
    */
-  public Date getLoginTime() {
+  public Timestamp getLoginTime() {
     return loginTime;
   }
 
@@ -228,7 +228,7 @@ public class User {
    * @param loginTime
    *         上一次登录时间
    */
-  public void setLoginTime(Date loginTime) {
+  public void setLoginTime(Timestamp loginTime) {
     this.loginTime = loginTime;
   }
 

@@ -16,7 +16,7 @@ import java.util.List;
  * @date 2018/07/14
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 @SuppressWarnings("SpringJavaAutowiringInspection")
 public class PermissionServiceImpl extends AbstractService<Permission> implements PermissionService {
     @Resource

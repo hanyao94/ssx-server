@@ -14,7 +14,7 @@ import javax.annotation.Resource;
  * @date 2018/07/14
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 @SuppressWarnings("SpringJavaAutowiringInspection")
 public class RolePermissionServiceImpl extends AbstractService<RolePermission> implements RolePermissionService {
     @Resource

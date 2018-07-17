@@ -31,8 +31,9 @@ public class UserRole {
      *
      * @param userId 用户Id
      */
-    public void setUserId(Long userId) {
+    public UserRole setUserId(Long userId) {
         this.userId = userId;
+        return this;
     }
 
     /**
@@ -49,7 +50,8 @@ public class UserRole {
      *
      * @param roleId 角色Id
      */
-    public void setRoleId(Long roleId) {
+    public UserRole setRoleId(Long roleId) {
         this.roleId = roleId;
+        return this;
     }
 }

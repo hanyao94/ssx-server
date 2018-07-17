@@ -19,7 +19,7 @@ import java.util.List;
  * @date 2018/07/14
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 @SuppressWarnings("SpringJavaAutowiringInspection")
 public class RoleServiceImpl extends AbstractService<Role> implements RoleService {
   @Resource
@@ -34,13 +34,13 @@ public class RoleServiceImpl extends AbstractService<Role> implements RoleServic
   }
 
   @Override
-  public void save(Role role) {
+  public void save(final Role role) {
     roleMapper.insert(role);
-    this.rolePermissionMapper.saveRolePermission(role.getId(), role.getPermissionIdList());
+    rolePermissionMapper.saveRolePermission(role.getId(), role.getPermissionIdList());
   }
 
   @Override
-  public void update(Role role) {
+  public void update(final Role role) {
     // 删掉所有权限，再添加回去
     final Condition condition = new Condition(RolePermission.class);
     condition.createCriteria().andCondition("role_id = ", role.getId());
