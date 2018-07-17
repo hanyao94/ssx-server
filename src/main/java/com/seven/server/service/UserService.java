@@ -2,6 +2,7 @@ package com.seven.server.service;
 
 import com.seven.server.model.User;
 import com.seven.server.core.service.Service;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.List;
 

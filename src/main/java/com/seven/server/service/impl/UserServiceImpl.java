@@ -9,6 +9,7 @@ import com.seven.server.model.UserRole;
 import com.seven.server.service.UserService;
 import com.seven.server.core.service.AbstractService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,8 +33,8 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
   private UserRoleMapper userRoleMapper;
   @Resource
   private PermissionMapper permissionMapper;
-  @Resource
-  private PasswordEncoder passwordEncoder;
+  //  @Resource
+  private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
   /**
    * 重写save方法，密码加密后再存
