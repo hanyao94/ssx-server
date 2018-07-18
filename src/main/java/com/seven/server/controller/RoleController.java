@@ -6,6 +6,7 @@ import com.seven.server.model.Role;
 import com.seven.server.service.RoleService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -45,6 +46,7 @@ public class RoleController {
     return ResultGenerator.genOkResult(role);
   }
 
+  @PreAuthorize("hasAuthority('role:list')")
   @GetMapping
   public Result list(@RequestParam(defaultValue = "0") Integer page,
                      @RequestParam(defaultValue = "0") Integer size) {
