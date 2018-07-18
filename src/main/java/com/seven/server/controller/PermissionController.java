@@ -1,11 +1,13 @@
 package com.seven.server.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.seven.server.core.response.Result;
 import com.seven.server.core.response.ResultGenerator;
 import com.seven.server.model.Permission;
 import com.seven.server.service.PermissionService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -45,11 +47,12 @@ public class PermissionController {
     return ResultGenerator.genOkResult(permission);
   }
 
+  @PreAuthorize("hasAuthority('role:list')")
   @GetMapping
   public Result list(@RequestParam(defaultValue = "0") Integer page,
                      @RequestParam(defaultValue = "0") Integer size) {
     PageHelper.startPage(page, size);
-    List<Permission> list = permissionService.findAll();
+    List<JSONObject> list = permissionService.findAllResourcePermission();
     PageInfo pageInfo = new PageInfo(list);
     return ResultGenerator.genOkResult(pageInfo);
   }

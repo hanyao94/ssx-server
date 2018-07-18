@@ -22,18 +22,21 @@ public class RoleController {
   @Resource
   private RoleService roleService;
 
+  @PreAuthorize("hasAuthority('role:add')")
   @PostMapping
   public Result add(@RequestBody Role role) {
     roleService.save(role);
     return ResultGenerator.genOkResult();
   }
 
+  @PreAuthorize("hasAuthority('role:delete')")
   @DeleteMapping("/{id}")
   public Result delete(@PathVariable Long id) {
     roleService.deleteById(id);
     return ResultGenerator.genOkResult();
   }
 
+  @PreAuthorize("hasAuthority('role:update')")
   @PutMapping
   public Result update(@RequestBody Role role) {
     roleService.update(role);
@@ -46,12 +49,13 @@ public class RoleController {
     return ResultGenerator.genOkResult(role);
   }
 
+
   @PreAuthorize("hasAuthority('role:list')")
   @GetMapping
   public Result list(@RequestParam(defaultValue = "0") Integer page,
                      @RequestParam(defaultValue = "0") Integer size) {
     PageHelper.startPage(page, size);
-    List<Role> list = roleService.findAll();
+    List<com.seven.server.model.Resource> list = roleService.findAllRoleWithPermission();
     PageInfo pageInfo = new PageInfo(list);
     return ResultGenerator.genOkResult(pageInfo);
   }
