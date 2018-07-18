@@ -33,8 +33,8 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
   private UserRoleMapper userRoleMapper;
   @Resource
   private PermissionMapper permissionMapper;
-  //  @Resource
-  private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+  @Resource
+  private PasswordEncoder passwordEncoder;
 
   /**
    * 重写save方法，密码加密后再存
