@@ -59,9 +59,9 @@ public class WebMVcConfig extends WebMvcConfigurationSupport {
             SerializerFeature.WriteNullStringAsEmpty,
             // Number null -> 0
             //数值字段如果为null，则输出为0
-            SerializerFeature.WriteNullNumberAsZero
+            SerializerFeature.WriteNullNumberAsZero,
             // List字段如果为null,输出为[],而非null
-            //SerializerFeature.WriteNullListAsEmpty
+            SerializerFeature.WriteNullListAsEmpty
                                 );
     converter.setSupportedMediaTypes(supportedMediaTypes);
     converter.setFastJsonConfig(config);
