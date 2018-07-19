@@ -29,7 +29,7 @@ public class UserController {
   @Resource
   private UserDetailsServiceImpl userDetailsService;
 
-  @PostMapping
+  @PostMapping("/register")
   public Result register(@RequestBody @Valid User user, BindingResult bindingResult) {
     // {"username":"123456", "password":"123456", "email": "123456@qq.com"}
     if (bindingResult.hasErrors()) {
