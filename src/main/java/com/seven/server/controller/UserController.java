@@ -1,5 +1,6 @@
 package com.seven.server.controller;
 
+import com.seven.server.core.jwt.JwtUtil;
 import com.seven.server.core.response.Result;
 import com.seven.server.core.response.ResultGenerator;
 import com.seven.server.model.User;
@@ -28,6 +29,8 @@ public class UserController {
   private UserService userService;
   @Resource
   private UserDetailsServiceImpl userDetailsService;
+  @Resource
+  private JwtUtil jwtUtil;
 
   @PostMapping("/register")
   public Result register(@RequestBody @Valid User user, BindingResult bindingResult) {
@@ -134,9 +137,8 @@ public class UserController {
   private Result getToken(@Valid User user) {
     String username = user.getUsername();
     UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-//    String token = jwtUtil.sign(username, userDetails.getAuthorities());
-//    return ResultGenerator.genOkResult(token);
-    return null;
+    String token = jwtUtil.sign(username, userDetails.getAuthorities());
+    return ResultGenerator.genOkResult(token);
   }
 
 }

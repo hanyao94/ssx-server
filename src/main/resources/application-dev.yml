@@ -19,3 +19,15 @@ spring:
 logging:
   level:
     com.seven.server: debug
+
+##############################
+# Json web token
+##############################
+# 过期时间24*3600=1天
+jwt:
+  expiration-time: 86400
+  header: Authorization
+  token-prefix: Bearer
+  privateKey: rsa/private-key.pem
+  publicKey: rsa/public-key.pem
+  authorities-key: auth
